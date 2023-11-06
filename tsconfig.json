@@ -1,0 +1,49 @@
+{
+    "compileOnSave": false,
+    "include": ["/*.vue","./*.ts"],
+    "ts-node": {
+      // these options are overrides used only by ts-node
+      // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
+      "compilerOptions": {
+        "module": "commonjs"
+      }
+    },
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "strict": true,
+        "jsx": "preserve",
+        "importHelpers": true,
+        "baseUrl": ".",
+        "declaration": false,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "noEmit": true,
+        "sourceMap": true,
+        "skipLibCheck": true,
+        "types": [
+          "webpack-env"
+        ],
+        "lib": [
+          "esnext",
+          "dom",
+          "dom.iterable",
+          "scripthost"
+        ],
+        "typeRoots": ["node_modules/@types", "src/types"],
+        "paths": {
+          "@images/*": ["assets/images/*"],
+          "@fonts/*": ["assets/fonts/*"],
+        },
+        "plugins": [{
+            "name": "typescript-plugin-css-modules",
+            "options": {
+              "customMatcher": "\\.(c|sa|sc)ss$",
+              "classnameTransform": "camelCase"
+            }
+          }]
+    }
+}
