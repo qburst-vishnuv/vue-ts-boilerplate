@@ -1,26 +1,10 @@
 <template>
-    <div>
-        <h1 class="">
-            Vue 3 boilerplate
-        </h1>
-    </div>
-  </template>
+  <div>
+    <h1 class="">
+      Vue 3 boilerplate
+    </h1>
+  </div>
+</template>
   
-  <script lang="ts" >
-
-    export default {
-        name: 'App'
-    };
-
-  </script>
-  
-  <style lang="css">
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
-  </style>
+<script lang="ts" src="./App"></script>
+<style lang="css" src="@styles/components/App.css"></style>
