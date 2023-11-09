@@ -56,15 +56,15 @@ const config: webpack.Configuration = {
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          postcss: [require('postcss-cssnext')()]
+        }
       },
       {
         test: /\.s[ac]ss$/i,
         exclude: /node_modules/,
         use: [
-          {
-            loader: "vue-style-loader"
-          },
           { loader: MiniCssExtractPlugin.loader },
           {
             loader: "css-loader",
@@ -73,10 +73,12 @@ const config: webpack.Configuration = {
             }
           },
 
-          { loader: "postcss-loader" },
           { loader: "sass-loader", 
           options: {}
-          }
+          },
+          {
+            loader: "vue-style-loader"
+          },
         ]
 
       },
@@ -85,7 +87,6 @@ const config: webpack.Configuration = {
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
-          "postcss-loader",
           "sass-loader"
         ]
       },

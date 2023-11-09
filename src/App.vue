@@ -7,14 +7,14 @@
   </template>
   
   <script lang="ts" >
-  
+
     export default {
         name: 'App'
     };
 
   </script>
   
-  <style>
+  <style lang="css">
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
