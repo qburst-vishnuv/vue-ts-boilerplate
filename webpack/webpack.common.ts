@@ -4,8 +4,9 @@ import * as webpack from "webpack";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import dotenv from "dotenv";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import  { VueLoaderPlugin } from "vue-loader";
 
-const CopyPlugin = require("copy-webpack-plugin");
+// const CopyPlugin = require("copy-webpack-plugin");
 
 const IN_PRODUCTION =
   process.env.NODE_ENV === "production" ||
@@ -24,14 +25,16 @@ const {
 const outputPath = path.resolve(__dirname, "..", "build");
 
 const config: webpack.Configuration = {
-  entry: "./index.ts",
+  entry: "./src/index.ts",
   resolve: {
     alias: {
       "@images": path.resolve(__dirname, "../assets/images"),
       "@fonts": path.resolve(__dirname, "../assets/fonts"),
     },
-    fallback: {},
-    extensions: [".ts", ".vue", ".js", ".css", ".scss"],
+    fallback: {
+      
+    },
+    extensions: [".ts", ".js", ".vue", ".css", ".scss"],
     modules: [path.resolve(__dirname, "../src"), "../node_modules"]
   },
   output: {
@@ -44,16 +47,24 @@ const config: webpack.Configuration = {
   module: {
     rules: [
       {
-        test: /\.(vue|ts|js)$/,
+        test: /\.(j|t)sx?$/,
         use: {
-          loader: "babel-loader"
+          loader: "babel-loader",
         },
-        exclude: /node_modules/
+        exclude: /node_modules/,
+  
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       },
       {
         test: /\.s[ac]ss$/i,
         exclude: /node_modules/,
         use: [
+          {
+            loader: "vue-style-loader"
+          },
           { loader: MiniCssExtractPlugin.loader },
           {
             loader: "css-loader",
@@ -107,6 +118,7 @@ const config: webpack.Configuration = {
     ]
   },
   plugins: [
+    new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: "ejs-compiled-loader!./src/index.ejs",
       hash: true,
@@ -121,14 +133,6 @@ const config: webpack.Configuration = {
       filename: "[name].[fullhash].css",
       chunkFilename: "[id].[fullhash].css",
     }),
-    new CopyPlugin({
-      patterns:[
-        {
-          from: path.resolve(__dirname, "..","public/meta.json"),
-          to: outputPath
-        }
-      ]
-    })
   ]
 };
 

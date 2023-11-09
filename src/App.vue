@@ -6,13 +6,12 @@
     </div>
   </template>
   
-  <script>
+  <script lang="ts" >
+  
+    export default {
+        name: 'App'
+    };
 
-  export default {
-    name: 'App',
-    components: {
-    }
-  }
   </script>
   
   <style>

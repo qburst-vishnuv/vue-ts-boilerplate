@@ -1,6 +1,6 @@
 {
     "compileOnSave": false,
-    "include": ["/*.vue","./*.ts"],
+    "include": ["src/**/*"],
     "ts-node": {
       // these options are overrides used only by ts-node
       // same as the --compilerOptions flag and the TS_NODE_COMPILER_OPTIONS environment variable
@@ -9,8 +9,13 @@
       }
     },
     "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
+      "target": "es6",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "noUnusedLocals": true,
+      "noUnusedParameters": false,
+        // "target": "esnext",
+        // "module": "esnext",
         "strict": true,
         "jsx": "preserve",
         "importHelpers": true,
@@ -20,7 +25,6 @@
         "esModuleInterop": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "moduleResolution": "node",
         "noEmit": true,
         "sourceMap": true,
         "skipLibCheck": true,
